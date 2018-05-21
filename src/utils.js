@@ -1,25 +1,34 @@
+import Chance from 'chance';
+import moment from 'moment';
+
+
 export function generateRandomList() {
-  const list = [];
+  const chance = new Chance();
+  let index = 0;
 
-  for (var i = 0; i < 100; i++) {
-    const random = loremIpsum[i % loremIpsum.length];
-    const randoms = [random];
+  return function () {
+    const list = [];
 
-    for (let j = Math.round(Math.random() * 10); j--; ) {
-      randoms.push(loremIpsum[(i * j) % loremIpsum.length]);
+    for (var i = 0; i < 100; i++ , index++) {
+      const random = loremIpsum[i % loremIpsum.length];
+      const randoms = [random];
+
+      for (let j = Math.round(Math.random() * 10); j--;) {
+        randoms.push(loremIpsum[(i * j) % loremIpsum.length]);
+      }
+
+      list.push({
+        color: BADGE_COLORS[i % BADGE_COLORS.length],
+        index,
+        name: NAMES[i % NAMES.length],
+        date: moment(chance.date({ string: true })),
+        random,
+        randomLong: randoms.join(" "),
+        size: ROW_HEIGHTS[Math.floor(Math.random() * ROW_HEIGHTS.length)]
+      });
     }
-
-    list.push({
-      color: BADGE_COLORS[i % BADGE_COLORS.length],
-      index: i,
-      name: NAMES[i % NAMES.length],
-      random,
-      randomLong: randoms.join(" "),
-      size: ROW_HEIGHTS[Math.floor(Math.random() * ROW_HEIGHTS.length)]
-    });
+    return list;
   }
-
-  return list;
 }
 
 const BADGE_COLORS = [

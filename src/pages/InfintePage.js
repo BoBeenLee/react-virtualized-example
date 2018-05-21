@@ -48,9 +48,10 @@ class InfintePage extends Component {
     const { list, hasNextPage, isLoading } = this.state;
     return (
       <div>
-        <h1>Infinite Scroll</h1>
+        <h1>Infinite Scroll Size: {list.length}</h1>
         <InfinteList
           hasNextPage={hasNextPage}
+          height={600}
           isNextPageLoading={isLoading}
           list={list}
           rowHeight={FIXED_HEIGHT}
