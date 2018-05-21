@@ -50,12 +50,11 @@ class InfintePage extends Component {
       <div>
         <h1>Infinite Scroll</h1>
         <InfinteList
-          list={list}
-          height={500}
-          rowHeight={FIXED_HEIGHT}
-          loadNextPage={this.loadNextPage}
           hasNextPage={hasNextPage}
           isNextPageLoading={isLoading}
+          list={list}
+          rowHeight={FIXED_HEIGHT}
+          loadNextPage={this.loadNextPage}
           rowRenderer={this.rowRenderer}
           isRowLoaded={this.isRowLoaded}
         />
